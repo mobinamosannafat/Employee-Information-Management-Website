@@ -1,0 +1,23 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <!--<button><a href="{% url 'employees:list' %}">HomePage</a></button><br>-->
+    <div class="add-employee">
+        <nav>
+            <ul>
+                <li>
+                    <form class="homepage-link" action="{% url 'employees:list' %}" method="post"> {% csrf_token %}
+                        <button type="submit">HomePage</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <br>
+        <h2>This is AddEmployee Page</h2><br><br>
+        <form class="site-form" action="{% url 'employees:add' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add">
+        </form>
+    </div>
+{% endblock %}

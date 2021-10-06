@@ -1,0 +1,77 @@
+{% extends 'base_layout.html' %}
+
+{% block content%}
+<nav>
+    <ul>
+        <li>
+            <form class="homepage-link" action="{% url 'employees:list' %}" method="post"> {% csrf_token %}
+                <button type="submit">HomePage</button>
+            </form>
+        </li>
+    </ul>
+</nav><br><br>
+<h1>This is Statics queries Page</h1><br>
+<div>
+    <br><br>
+    <table style="width:80%;">
+        <tr align="center">
+            <th>تعداد کارمندان متاهل</th>
+            <th>تعداد کارمندان مجرد</th>
+            <th>تعداد کارمندانی که حقوق بالای 1000000 دارند</th>
+            <th>جمع کل حقوق پرسنل</th>
+            <th>انحراف معیار حقوق پرسنل</th>
+        </tr>
+        <tr align="center">
+            {% for Inf in Info %}
+            <td>{{Inf}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <br><br>
+    <h4>مشخصات کارمندی با بیشترین و کمترین حقوق</h4><br>
+    {%if MAndLIncomeEmp%}
+    {%for k in MAndLIncomeEmp%}
+    <table>
+        <tr>
+            <td>name</td>
+            <td>{{k.name}}</td>
+        </tr>
+        <tr>
+            <td>family</td>
+            <td>{{k.family}}</td>
+        </tr>
+        <tr>
+            <td>age</td>
+            <td>{{k.age}}</td>
+        </tr>
+        <tr>
+            <td>nationalCode</td>
+            <td>{{k.nationalCode}}</td>
+        </tr>
+        <tr>
+            <td>personalCode</td>
+            <td>{{k.personalCode}}</td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td>{{k.phone}}</td>
+        </tr>
+        <tr>
+            <td>address</td>
+            <td>{{k.address}}</td>
+        </tr>
+        <tr>
+            <td>maritialStatus</td>
+            <td>{{k.maritialStatus}}</td>
+        </tr>
+        <tr>
+            <td>income</td>
+            <td>{{k.income}}</td>
+        </tr>
+    </table>
+    <br><br>
+    {%endfor%}
+    {%endif%}
+    </table>
+</div>
+{% endblock %}

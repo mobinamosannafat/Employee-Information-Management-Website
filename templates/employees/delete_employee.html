@@ -1,0 +1,32 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="delete-employee">
+        <nav>
+            <ul>
+                <li>
+                    <form class="homepage-link" action="{% url 'employees:list' %}" method="post"> {% csrf_token %}
+                        <button type="submit">HomePage</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <br>
+        <h2>This is DeleteEmployee Page</h2><br><br>
+        <form action="{%url 'employees:delete'%}" method="POST">
+            {%csrf_token%}
+            <input type="text" name="srh" placeholder="جستجو بر اساس کد پرسنلی">
+            <button>search</button>
+            <div>
+                {%if messages%}
+                    <ul class="messages">
+                        {%for k in messages%}
+                        <li>{{k}}</li>
+                        {%endfor%}
+
+                    </ul>
+                {%endif%}
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="search-employee">
+    <nav>
+        <ul>
+            <li>
+                <form class="homepage-link" action="{% url 'employees:list' %}" method="post"> {% csrf_token %}
+                    <button type="submit">HomePage</button>
+                </form>
+            </li>
+        </ul>
+    </nav><br><br>
+
+    <h2>This is Reporting Page</h2><br><br>
+    <form action="{%url 'employees:search'%}" method="POST">
+        {%csrf_token%}
+        <input type="text" name="srh" placeholder="جستجو کنید">
+        <button>search</button>
+        <div>
+            {%if messages%}
+            <ul class="messages">
+                {%for k in messages%}
+                <li>{{k}}</li>
+                {%endfor%}
+            </ul>
+            {%endif%}
+        </div>
+
+
+        <div>
+            {%if search%}
+            {%for k in search%}
+            <table>
+                <tr>
+                    <td>name</td>
+                    <td>{{k.name}}</td>
+                </tr>
+                <tr>
+                    <td>family</td>
+                    <td>{{k.family}}</td>
+                </tr>
+                <tr>
+                    <td>age</td>
+                    <td>{{k.age}}</td>
+                </tr>
+                <tr>
+                    <td>nationalCode</td>
+                    <td>{{k.nationalCode}}</td>
+                </tr>
+                <tr>
+                    <td>personalCode</td>
+                    <td>{{k.personalCode}}</td>
+                </tr>
+                <tr>
+                    <td>phone</td>
+                    <td>{{k.phone}}</td>
+                </tr>
+                <tr>
+                    <td>address</td>
+                    <td>{{k.address}}</td>
+                </tr>
+                <tr>
+                    <td>maritialStatus</td>
+                    <td>{{k.maritialStatus}}</td>
+                </tr>
+                <tr>
+                    <td>income</td>
+                    <td>{{k.income}}</td>
+                </tr>
+            </table>
+            <br><br>
+            {%endfor%}
+            {%endif%}
+        </div>
+    </form>
+</div>
+{% endblock %}

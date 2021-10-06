@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %}
+
+{% block content%}
+    <h1>Employees</h1><br><br>
+    <div>
+        <button><a href="{% url 'employees:add' %}">Add New Employee</a></button>
+        <button><a href="{% url 'employees:delete' %}">Delete an Employee</a></button>
+        <button><a href="{% url 'employees:search' %}">Reporting</a></button>
+        <button><a href="{% url 'employees:query' %}">ُStatic Queries</a></button>
+    </div>
+    <div><br><br>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Family</th>
+                <th>NationalCode</th>
+                <th>PersonalCode</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>MaritialStatus</th>
+                <th>Age</th>
+                <th>Income</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <th>{{user.name}}</th>
+                    <th>{{user.family}}</th>
+                    <th>{{user.nationalCode}}</th>
+                    <th>{{user.personalCode}}</th>
+                    <th>{{user.phone}}</th>
+                    <th>{{user.address}}</th>
+                    <th>{{user.maritialStatus}}</th>
+                    <th>{{user.age}}</th>
+                    <th>{{user.income}}</th>
+                    <td><button><a href="/employees/employee_list/update/{{ user.id }}">edit</a></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

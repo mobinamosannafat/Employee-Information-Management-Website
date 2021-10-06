@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="edit-employee">
+        <nav>
+            <ul>
+                <li>
+                    <form class="homepage-link" action="{% url 'employees:list' %}" method="post"> {% csrf_token %}
+                        <button type="submit">HomePage</button>
+                    </form>
+                </li>
+            </ul>
+        </nav><br><br>
+
+        <h2>This is Edit Employee Page</h2>
+        <form method="POST" class="post-form" action="/employees/employee_list/update/{{ employee.id }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Edit</button>
+        </form>
+    </div>
+{% endblock %}
